@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Контактная форма</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom, #dfeeea, #b6d7a8);
+      color: #2f3e2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #f4f8f4;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      width: 400px;
+    }
+    h2 {
+      text-align: center;
+      color: #2b593f;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #a4c2a5;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      background-color: #6fae75;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #5d9462;
+    }
+    .message {
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .error {
+      color: #c0392b;
+    }
+    .success {
+      color: #2e7d32;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Расскажи, что думаешь о Даше Агашкиной</h2>
+    <form id="contactForm" onsubmit="return validateForm()">
+      <label for="name">Имя:</label>
+      <input type="text" id="name" name="name" placeholder="Введите ваше имя">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Введите email">
+
+      <label for="message">Сообщение:</label>
+      <textarea id="message" name="message" placeholder="Введите сообщение"></textarea>
+
+      <button id="submit" type="submit">Отправить</button>
+
+      <div id="error" class="message error"></div>
+      <div id="success" class="message success"></div>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const errorDiv = document.getElementById('error');
+      const successDiv = document.getElementById('success');
+
+      errorDiv.textContent = '';
+      successDiv.textContent = '';
+
+      if (!name) {
+        errorDiv.textContent = 'Заполните поле "Имя"';
+        return false;
+      }
+      if (!email) {
+        errorDiv.textContent = 'Заполните поле "Email"';
+        return false;
+      }
+      if (!message) {
+        errorDiv.textContent = 'Введите сообщение';
+        return false;
+      }
+
+      successDiv.textContent = 'Форма успешно отправлена!';
+      return false;
+    }
+  </script>
+</body>
+</html>
